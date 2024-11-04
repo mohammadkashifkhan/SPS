@@ -6,15 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
@@ -24,6 +24,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -46,11 +47,16 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val query by viewModel.query.collectAsState()
                 val todos by viewModel.todoList.collectAsState()
-                
+
                 NavHost(navController = navController, startDestination = TodoList) {
                     composable<TodoList> {
                         Scaffold(
-                            topBar = { CenterAlignedAppBar() },
+                            topBar = {
+                                CenterAlignedAppBar(
+                                    navController,
+                                    stringResource(id = R.string.app_name)
+                                )
+                            },
                             content = { paddingValues ->
                                 Column(
                                     modifier = Modifier
@@ -86,15 +92,46 @@ class MainActivity : ComponentActivity() {
                                 FloatingActionButton(onClick = {
                                     navController.navigate(TodoDetail)
                                 }) {
-                                    Icon(imageVector = Icons.Default.Add, contentDescription = "add")
+                                    Icon(
+                                        imageVector = Icons.Default.Add,
+                                        contentDescription = "add"
+                                    )
                                 }
                             })
                     }
                     composable<TodoDetail> {
                         Scaffold(
-                            topBar = { CenterAlignedAppBar() },
+                            topBar = { CenterAlignedAppBar(navController, "Add Todo") },
                             content = { paddingValues ->
-                                Text(modifier = Modifier.padding(paddingValues), text = "Detail here...")
+                                Column(
+                                    modifier = Modifier
+                                        .padding(paddingValues)
+                                        .fillMaxSize()
+                                        .padding(16.dp)
+                                ) {
+                                    TextField(
+                                        leadingIcon = {
+                                            Icon(
+                                                Icons.Filled.MailOutline,
+                                                null,
+                                                tint = LocalContentColor.current.copy(alpha = 0.3f)
+                                            )
+                                        },
+                                        value = query,
+                                        onValueChange = viewModel::onQueryTextChange,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .weight(0.8f),
+                                        placeholder = { Text(text = Constants.startTyping) }
+                                    )
+                                    Button(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .wrapContentHeight()
+                                        .weight(0.2f),
+                                        onClick = { navController.navigateUp() }) {
+                                        Text(text = Constants.addNote)
+                                    }
+                                }
                             }
                         )
                     }
