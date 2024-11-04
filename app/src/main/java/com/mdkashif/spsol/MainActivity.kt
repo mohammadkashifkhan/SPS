@@ -29,7 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mdkashif.spsol.detail.presentation.DetailContainer
+import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
 import com.mdkashif.spsol.list.presentation.TodoListViewModel
+import com.mdkashif.spsol.list.presentation.composable.ListContainer
 import com.mdkashif.spsol.shared.Constants
 import com.mdkashif.spsol.shared.composable.CenterAlignedAppBar
 import com.mdkashif.spsol.ui.theme.SPSolTheme
@@ -37,7 +40,8 @@ import kotlinx.serialization.Serializable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
-    private val viewModel: TodoListViewModel by viewModel()
+    private val listViewModel: TodoListViewModel by viewModel()
+    private val detailViewModel: TodoDetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,95 +49,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             SPSolTheme {
                 val navController = rememberNavController()
-                val query by viewModel.query.collectAsState()
-                val todos by viewModel.todoList.collectAsState()
 
                 NavHost(navController = navController, startDestination = TodoList) {
                     composable<TodoList> {
-                        Scaffold(
-                            topBar = {
-                                CenterAlignedAppBar(
-                                    navController,
-                                    stringResource(id = R.string.app_name)
-                                )
-                            },
-                            content = { paddingValues ->
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(16.dp)
-                                ) {
-                                    TextField(
-                                        leadingIcon = {
-                                            Icon(
-                                                Icons.Filled.Search,
-                                                null,
-                                                tint = LocalContentColor.current.copy(alpha = 0.3f)
-                                            )
-                                        },
-                                        value = query,
-                                        onValueChange = viewModel::onQueryTextChange,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .wrapContentHeight()
-                                            .weight(0.4f),
-                                        placeholder = { Text(text = Constants.search) }
-                                    )
-                                    DisplayTodoList(
-                                        Modifier
-                                            .padding(paddingValues)
-                                            .fillMaxSize()
-                                            .weight(1f),
-                                        todos
-                                    )
-                                }
-                            },
-                            floatingActionButton = {
-                                FloatingActionButton(onClick = {
-                                    navController.navigate(TodoDetail)
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Add,
-                                        contentDescription = "add"
-                                    )
-                                }
-                            })
+                        ListContainer(navController = navController, viewModel = listViewModel)
                     }
                     composable<TodoDetail> {
-                        Scaffold(
-                            topBar = { CenterAlignedAppBar(navController, "Add Todo") },
-                            content = { paddingValues ->
-                                Column(
-                                    modifier = Modifier
-                                        .padding(paddingValues)
-                                        .fillMaxSize()
-                                        .padding(16.dp)
-                                ) {
-                                    TextField(
-                                        leadingIcon = {
-                                            Icon(
-                                                Icons.Filled.MailOutline,
-                                                null,
-                                                tint = LocalContentColor.current.copy(alpha = 0.3f)
-                                            )
-                                        },
-                                        value = query,
-                                        onValueChange = viewModel::onQueryTextChange,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .weight(0.8f),
-                                        placeholder = { Text(text = Constants.startTyping) }
-                                    )
-                                    Button(modifier = Modifier
-                                        .fillMaxWidth()
-                                        .wrapContentHeight()
-                                        .weight(0.2f),
-                                        onClick = { navController.navigateUp() }) {
-                                        Text(text = Constants.addNote)
-                                    }
-                                }
-                            }
-                        )
+                        DetailContainer(navController = navController, viewModel = detailViewModel)
                     }
                 }
             }

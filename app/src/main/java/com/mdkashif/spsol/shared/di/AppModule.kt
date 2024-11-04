@@ -10,25 +10,39 @@ import com.mdkashif.spsol.list.presentation.TodoListViewModel
 import com.mdkashif.spsol.shared.Constants
 import com.mdkashif.spsol.shared.db.AppDatabase
 import org.koin.android.ext.koin.androidApplication
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
-import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.context.loadKoinModules
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-val appModule = module {
 
-    single { androidApplication().applicationContext }
+fun injectFeature() = loadFeature
 
-    singleOf(::TodoListRepositoryImpl) { bind<TodoListRepository>() }
-    singleOf(::TodoDetailRepositoryImpl) { bind<TodoDetailRepository>() }
+private val loadFeature by lazy {
+    loadKoinModules(
+        listOf(
+            databaseModule,
+            repositoryModule,
+            viewModelModule
+        )
+    )
+}
 
+
+val databaseModule = module {
     single {
-        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, Constants.dbAlias)
+        Room.databaseBuilder(get(), AppDatabase::class.java, Constants.dbAlias)
             .build()
     }
 
     single { get<AppDatabase>().initTodoDao() }
+}
 
-    viewModelOf(::TodoListViewModel)
-    viewModelOf(::TodoDetailViewModel)
+val repositoryModule = module {
+    single<TodoListRepository> { (TodoListRepositoryImpl(todoDao = get())) }
+    single<TodoDetailRepository> { (TodoDetailRepositoryImpl(todoDao = get())) }
+}
+
+val viewModelModule = module {
+    viewModel { TodoListViewModel(repository = get()) }
+    viewModel { TodoDetailViewModel(repository = get()) }
 }

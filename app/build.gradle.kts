@@ -63,6 +63,7 @@ dependencies {
 
     ////////////// DB //////////////
     implementation(libs.room)
+    implementation(libs.room.ktx)
     ksp(libs.room.ksp)
 
     ////////////// DI //////////////
