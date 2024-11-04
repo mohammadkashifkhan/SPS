@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -66,6 +67,11 @@ dependencies {
 
     ////////////// DI //////////////
     implementation(libs.koin)
+
+    ////////////// DI //////////////
+    implementation(libs.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

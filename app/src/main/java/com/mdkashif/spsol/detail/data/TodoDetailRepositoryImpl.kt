@@ -1,7 +1,6 @@
 package com.mdkashif.spsol.detail.data
 
 import com.mdkashif.spsol.detail.domain.TodoDetailRepository
-import com.mdkashif.spsol.list.domain.TodoListRepository
 import com.mdkashif.spsol.shared.model.Todo
 
 class TodoDetailRepositoryImpl: TodoDetailRepository {

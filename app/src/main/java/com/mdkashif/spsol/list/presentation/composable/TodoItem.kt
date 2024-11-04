@@ -13,9 +13,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mdkashif.spsol.shared.model.Todo
 
 @Composable
-fun TodoItem(item: String) {
+fun TodoItem(item: Todo) {
     val clickableState = remember {
         mutableStateOf(false)
     }
@@ -30,9 +31,8 @@ fun TodoItem(item: String) {
                     .weight(1f)
                     .padding(start = 24.dp, top = 16.dp),
                 fontSize = 16.sp,
-                text = item,
+                text = item.note ?: "",
             )
-
         }
     }
 }

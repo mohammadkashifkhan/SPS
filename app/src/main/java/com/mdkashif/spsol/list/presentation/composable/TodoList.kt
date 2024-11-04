@@ -1,17 +1,16 @@
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mdkashif.spsol.list.presentation.composable.TodoItem
+import com.mdkashif.spsol.shared.model.Todo
 
 @Composable
-fun DisplayTodoList(paddingValues: PaddingValues, directory: List<String>) {
-    LazyColumn(modifier = Modifier.padding(paddingValues)) {
-        directory.forEach { directoryItem ->
+fun DisplayTodoList(modifier: Modifier, todos: List<Todo>) {
+    LazyColumn(modifier = modifier) {
+        todos.forEach { todoItem ->
             items(
-                items = directory,
+                items = todos,
                 itemContent = { TodoItem(it) }
             )
         }

@@ -8,4 +8,13 @@ import androidx.room.PrimaryKey
 data class Todo(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "note") val note: String?
-)
+) {
+
+    fun doesMatchSearchQuery(query: String) : Boolean {
+        note?.let {
+            if (it.contains(query))
+                return true
+        }
+        return false
+    }
+}

@@ -20,7 +20,7 @@ fun CenterAlignedAppBar() {
         title = {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
-                    fontFamily = FontFamily.Cursive,
+                    fontFamily = FontFamily.Serif,
                     fontWeight = FontWeight.ExtraBold,
                     text = stringResource(id = R.string.app_name)
                 )
