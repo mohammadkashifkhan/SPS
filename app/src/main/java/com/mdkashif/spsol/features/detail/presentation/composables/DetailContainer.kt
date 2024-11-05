@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.detail.presentation.composables
+package com.mdkashif.spsol.features.detail.presentation.composables
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.mdkashif.spsol.R
-import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.features.detail.presentation.TodoDetailViewModel
 import com.mdkashif.spsol.shared.composable.AppBar
 import com.mdkashif.spsol.shared.utils.Constants
 
@@ -64,9 +64,13 @@ fun DetailContainer(navController: NavController, viewModel: TodoDetailViewModel
                                         Constants.error,
                                         Constants.popback_error
                                     )
-                                    navController.navigateUp()
                                     viewModel.clearStates()
+                                    navController.navigateUp()
                                 } else {
+                                    navController.previousBackStackEntry?.savedStateHandle?.set(
+                                        Constants.error,
+                                        ""
+                                    )
                                     viewModel.addTodo(todo)
                                 }
                             }

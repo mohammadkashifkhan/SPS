@@ -1,8 +1,8 @@
-package com.mdkashif.spsol.detail.presentation
+package com.mdkashif.spsol.features.detail.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mdkashif.spsol.detail.domain.TodoDetailRepository
+import com.mdkashif.spsol.features.detail.domain.TodoDetailRepository
 import com.mdkashif.spsol.shared.model.Todo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

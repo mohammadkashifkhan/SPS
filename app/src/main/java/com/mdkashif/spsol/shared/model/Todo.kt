@@ -11,6 +11,6 @@ data class Todo(
 ) {
 
     fun doesMatchSearchQuery(query: String) : Boolean {
-        return note.contains(query)
+        return note.contains(query, ignoreCase = true)
     }
 }

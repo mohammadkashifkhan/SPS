@@ -1,6 +1,6 @@
-package com.mdkashif.spsol.detail.data
+package com.mdkashif.spsol.features.detail.data
 
-import com.mdkashif.spsol.detail.domain.TodoDetailRepository
+import com.mdkashif.spsol.features.detail.domain.TodoDetailRepository
 import com.mdkashif.spsol.shared.db.TodoDao
 import com.mdkashif.spsol.shared.model.Todo
 

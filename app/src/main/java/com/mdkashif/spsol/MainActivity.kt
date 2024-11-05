@@ -9,12 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
-import com.mdkashif.spsol.detail.presentation.composables.DetailContainer
-import com.mdkashif.spsol.list.presentation.TodoListViewModel
-import com.mdkashif.spsol.list.presentation.composable.ListContainer
+import com.mdkashif.spsol.features.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.features.detail.presentation.composables.DetailContainer
+import com.mdkashif.spsol.features.list.presentation.TodoListViewModel
+import com.mdkashif.spsol.features.list.presentation.composable.ListContainer
+import com.mdkashif.spsol.shared.theme.SPSolTheme
 import com.mdkashif.spsol.shared.utils.Constants
-import com.mdkashif.spsol.ui.theme.SPSolTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     composable<TodoList> { entry ->
                         ListContainer(navController = navController, viewModel = listViewModel, entry.savedStateHandle.get(
                             Constants.error) ?: "")
+                        entry.savedStateHandle.clearSavedStateProvider(Constants.error)
                     }
                     composable<TodoDetail> {
                         DetailContainer(navController = navController, viewModel = detailViewModel)

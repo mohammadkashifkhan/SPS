@@ -1,12 +1,12 @@
 package com.mdkashif.spsol.shared.di
 
 import androidx.room.Room
-import com.mdkashif.spsol.detail.data.TodoDetailRepositoryImpl
-import com.mdkashif.spsol.detail.domain.TodoDetailRepository
-import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
-import com.mdkashif.spsol.list.data.TodoListRepositoryImpl
-import com.mdkashif.spsol.list.domain.TodoListRepository
-import com.mdkashif.spsol.list.presentation.TodoListViewModel
+import com.mdkashif.spsol.features.detail.data.TodoDetailRepositoryImpl
+import com.mdkashif.spsol.features.detail.domain.TodoDetailRepository
+import com.mdkashif.spsol.features.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.features.list.data.TodoListRepositoryImpl
+import com.mdkashif.spsol.features.list.domain.TodoListRepository
+import com.mdkashif.spsol.features.list.presentation.TodoListViewModel
 import com.mdkashif.spsol.shared.db.AppDatabase
 import com.mdkashif.spsol.shared.utils.Constants
 import org.koin.core.context.loadKoinModules

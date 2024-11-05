@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.ui.theme
+package com.mdkashif.spsol.shared.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

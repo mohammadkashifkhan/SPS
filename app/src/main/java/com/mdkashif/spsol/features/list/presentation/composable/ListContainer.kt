@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.list.presentation.composable
+package com.mdkashif.spsol.features.list.presentation.composable
 
 import DisplayTodoList
 import TodoDetail
@@ -36,7 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.mdkashif.spsol.R
-import com.mdkashif.spsol.list.presentation.TodoListViewModel
+import com.mdkashif.spsol.features.list.presentation.TodoListViewModel
 import com.mdkashif.spsol.shared.composable.AppBar
 
 @Composable
@@ -84,7 +84,7 @@ fun ListContainer(navController: NavController, viewModel: TodoListViewModel, er
                                 Icon(
                                     Icons.Filled.Search,
                                     null,
-                                    tint = LocalContentColor.current.copy(alpha = 0.3f)
+                                    tint = LocalContentColor.current
                                 )
                             },
                             value = query,

@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.detail.domain
+package com.mdkashif.spsol.features.detail.domain
 
 import com.mdkashif.spsol.shared.model.Todo
 

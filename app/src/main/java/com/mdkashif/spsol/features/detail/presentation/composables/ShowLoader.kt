@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.detail.presentation.composables
+package com.mdkashif.spsol.features.detail.presentation.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.features.detail.presentation.TodoDetailViewModel
 
 @Composable
 fun ShowLoaderAndPopBackStack(

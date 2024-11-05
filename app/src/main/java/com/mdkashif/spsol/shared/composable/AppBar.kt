@@ -15,7 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
-import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.features.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.shared.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,6 +25,10 @@ fun AppBar(navController: NavController, viewModel: TodoDetailViewModel?, title:
         navigationIcon = {
             if (navController.previousBackStackEntry != null) {
                 IconButton(onClick = {
+                    navController.previousBackStackEntry?.savedStateHandle?.set(
+                        Constants.error,
+                        ""
+                    )
                     navController.navigateUp()
                     viewModel?.clearStates()
                 }) {

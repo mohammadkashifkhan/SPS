@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.list.presentation.composable
+package com.mdkashif.spsol.features.list.presentation.composable
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize

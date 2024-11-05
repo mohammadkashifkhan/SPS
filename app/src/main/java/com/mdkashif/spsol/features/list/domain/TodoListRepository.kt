@@ -1,4 +1,4 @@
-package com.mdkashif.spsol.list.domain
+package com.mdkashif.spsol.features.list.domain
 
 import com.mdkashif.spsol.shared.model.Todo
 import kotlinx.coroutines.flow.Flow
