@@ -2,7 +2,6 @@ package com.mdkashif.spsol.list.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mdkashif.spsol.list.data.TodoListRepositoryImpl
 import com.mdkashif.spsol.list.domain.TodoListRepository
 import com.mdkashif.spsol.shared.model.Todo
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,9 +16,8 @@ class TodoListViewModel(private val repository: TodoListRepository) : ViewModel(
     private val _query = MutableStateFlow("")
     val query = _query.asStateFlow()
 
-    init {
-        _getAllTodos()
-    }
+    val _showEmptyBanner = MutableStateFlow(true)
+    val showEmptyBanner = _showEmptyBanner.asStateFlow()
 
     private val _todoList = MutableStateFlow(emptyList<Todo>())
     val todoList =
@@ -30,9 +28,13 @@ class TodoListViewModel(private val repository: TodoListRepository) : ViewModel(
                 todos.filter { it.doesMatchSearchQuery(query) }
         }.stateIn(
             viewModelScope,
-            SharingStarted.WhileSubscribed(20000),
+            SharingStarted.WhileSubscribed(2000),
             _todoList.value
         )
+
+    init {
+        _getAllTodos()
+    }
 
     fun onQueryTextChange(query: String) {
         _query.value = query
@@ -42,6 +44,7 @@ class TodoListViewModel(private val repository: TodoListRepository) : ViewModel(
         viewModelScope.launch {
             repository.getAll().collect {
                 _todoList.value = it
+                _showEmptyBanner.value = it.isEmpty()
             }
         }
     }

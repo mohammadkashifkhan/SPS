@@ -15,14 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
+import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(navController: NavController, title: String) {
+fun AppBar(navController: NavController, viewModel: TodoDetailViewModel?, title: String) {
     TopAppBar(
         navigationIcon = {
             if (navController.previousBackStackEntry != null) {
-                IconButton(onClick = { navController.navigateUp() }) {
+                IconButton(onClick = {
+                    navController.navigateUp()
+                    viewModel?.clearStates()
+                }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Back"

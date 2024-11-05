@@ -7,8 +7,8 @@ import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
 import com.mdkashif.spsol.list.data.TodoListRepositoryImpl
 import com.mdkashif.spsol.list.domain.TodoListRepository
 import com.mdkashif.spsol.list.presentation.TodoListViewModel
-import com.mdkashif.spsol.shared.utils.Constants
 import com.mdkashif.spsol.shared.db.AppDatabase
+import com.mdkashif.spsol.shared.utils.Constants
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module

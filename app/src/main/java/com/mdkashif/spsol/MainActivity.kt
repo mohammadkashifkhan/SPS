@@ -9,8 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mdkashif.spsol.detail.presentation.DetailContainer
 import com.mdkashif.spsol.detail.presentation.TodoDetailViewModel
+import com.mdkashif.spsol.detail.presentation.composables.DetailContainer
 import com.mdkashif.spsol.list.presentation.TodoListViewModel
 import com.mdkashif.spsol.list.presentation.composable.ListContainer
 import com.mdkashif.spsol.shared.utils.Constants
