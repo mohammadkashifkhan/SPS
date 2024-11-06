@@ -31,7 +31,9 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = TodoList) {
                     composable<TodoList> { entry ->
                         ListContainer(navController = navController, viewModel = listViewModel, entry.savedStateHandle.get(
-                            Constants.error) ?: "")
+                            Constants.error
+                        ) ?: Constants.empty
+                        )
                         entry.savedStateHandle.clearSavedStateProvider(Constants.error)
                     }
                     composable<TodoDetail> {

@@ -11,10 +11,11 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-            startKoin {
-                androidLogger()
-                androidContext(this@BaseApplication)
-                injectFeature()
-            }
+        // Resource Location
+        startKoin {
+            androidLogger()
+            androidContext(this@BaseApplication)
+            injectFeature()
+        }
     }
 }

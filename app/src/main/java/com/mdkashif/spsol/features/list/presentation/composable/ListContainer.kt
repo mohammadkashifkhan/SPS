@@ -38,9 +38,14 @@ import androidx.navigation.NavController
 import com.mdkashif.spsol.R
 import com.mdkashif.spsol.features.list.presentation.TodoListViewModel
 import com.mdkashif.spsol.shared.composable.AppBar
+import com.mdkashif.spsol.shared.utils.Constants
 
 @Composable
-fun ListContainer(navController: NavController, viewModel: TodoListViewModel, error: String = "") {
+fun ListContainer(
+    navController: NavController,
+    viewModel: TodoListViewModel,
+    error: String = Constants.empty
+) {
     val query by viewModel.query.collectAsState()
     val todos by viewModel.todoList.collectAsState()
     val showEmptyBanner by viewModel.showEmptyBanner.collectAsState()

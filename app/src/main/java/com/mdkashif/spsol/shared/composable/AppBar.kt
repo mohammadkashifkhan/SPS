@@ -27,7 +27,7 @@ fun AppBar(navController: NavController, viewModel: TodoDetailViewModel?, title:
                 IconButton(onClick = {
                     navController.previousBackStackEntry?.savedStateHandle?.set(
                         Constants.error,
-                        ""
+                        Constants.empty
                     )
                     navController.navigateUp()
                     viewModel?.clearStates()

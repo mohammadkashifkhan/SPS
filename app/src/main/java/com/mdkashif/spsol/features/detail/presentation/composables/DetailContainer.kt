@@ -69,7 +69,7 @@ fun DetailContainer(navController: NavController, viewModel: TodoDetailViewModel
                                 } else {
                                     navController.previousBackStackEntry?.savedStateHandle?.set(
                                         Constants.error,
-                                        ""
+                                        Constants.empty
                                     )
                                     viewModel.addTodo(todo)
                                 }
